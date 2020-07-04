@@ -1,0 +1,24 @@
+{
+  "name": "realistic-ui",
+  "version": "0.0.1",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "author": {
+    "name": "Takeshi Kato",
+    "email": "takeshi.kato@creativegear.jp"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/creativegear/realistic-ui.git"
+  },
+  "peerDependencies": {
+    "react": ">=16.9",
+    "react-native": ">=0.58",
+    "styled-components": ">=4.4.0"
+  },
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

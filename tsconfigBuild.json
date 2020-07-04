@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "jsx": "react-native",
+    "noResolve": false,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "sourceMap": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es5",
+    "incremental": true,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true
+  },
+  "exclude": ["node_modules", "**/**/*/__tests__", "dist"],
+  "include": ["./src"],
+  "files": ["environment.d.ts"]
+}
