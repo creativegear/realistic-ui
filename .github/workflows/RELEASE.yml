@@ -1,0 +1,45 @@
+name: Release
+on:
+  push:
+    branches:
+      - master
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.13.0]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install Dependencies
+        run: yarn install
+      - name: Run Tests
+        run: yarn test
+        env:
+          CI: true
+      # - name: Release
+      #   run: yarn semantic-release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Deploy Storybook to Github Pages
+        run: yarn deploy-storybook
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

@@ -1,4 +1,14 @@
 {
+  "name": "realistic-ui",
+  "author": {
+    "name": "Takeshi Kato",
+    "email": "takeshi.kato@creativegear.jp"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/creativegear/realistic-ui.git"
+  },
   "scripts": {
     "postinstall": "rm -rf storybook && cp -R .storybook storybook",
     "publish": "yarn build && cd dist && npm publish && cd ..",
@@ -10,7 +20,8 @@
     "eject": "expo eject",
     "test": "yarn tslint && yarn tsc && jest",
     "build": "cp README.md ./dist/README.md && tsc --project tsconfigBuild.json",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "dependencies": {
     "react-native-svg": "^12.1.0"
@@ -34,6 +45,7 @@
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^5.3.19",
     "@storybook/react-native": "^5.3.19",
+    "@storybook/storybook-deployer": "^2.8.6",
     "@testing-library/react-native": "^5.0.3",
     "@types/jest": "^26.0.3",
     "@types/react": "^16.9.41",
