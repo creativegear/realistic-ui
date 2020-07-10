@@ -4,7 +4,7 @@ import Button from '../../src/Button';
 import { ContainerDeco } from '../../storybook/decorators';
 import { storiesOf } from '@storybook/react-native';
 import styled from 'styled-components/native';
-import { text } from '@storybook/addon-knobs';
+import TimeUtil from '../../src/util/TimeUtil';
 
 const Container = styled.View`
   background-color: transparent;
@@ -13,7 +13,6 @@ const Container = styled.View`
   width: 100%;
   margin-top: 28px;
   padding-top: 80px;
-
   flex-direction: column;
 `;
 
@@ -21,15 +20,14 @@ function Default(): React.ReactElement {
   return (
     <Container>
       <Button
-        style={{
-          marginVertical: 40,
+        style={{ marginBottom: 20 }}
+        onPress={async (setErrorMessage) => {
+          await TimeUtil.sleep(3000);
+          setErrorMessage('Some thing wrong!');
         }}
-        containerStyle={{
-          marginTop: 32,
-        }}
-        isDisabled={true}
-        text={text('button text', 'this is disabled')}
+        text={'Press me!'}
       />
+      <Button style={{ marginBottom: 20 }} isDisabled={true} text={'Disabled'} />
     </Container>
   );
 }
