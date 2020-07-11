@@ -32,7 +32,7 @@ const StyledDisabledText = styled(StyledText)`
   color: ${(props: IStyleTheme) => ColorUtil.darken(props.theme.colors.butttonTextColor, 50)};
 `;
 
-interface Props {
+interface IProps {
   testID?: string;
   text?: string;
   onPress?: (setErrorMessage?: (message: string) => void) => Promise<any>;
@@ -47,7 +47,7 @@ interface Props {
   rightElement?: React.ReactElement;
 }
 
-const Button: React.FC<Props> = (props) => {
+const Button: React.FC<IProps> = (props) => {
   const {
     testID,
     text,
@@ -64,7 +64,6 @@ const Button: React.FC<Props> = (props) => {
 
   const [loading, setLoading] = useState(false);
   const themeContext: IThemePart = useContext(ThemeContext);
-  console.log(themeContext);
 
   const onPress = async (e: any) => {
     if (props.onPress) {

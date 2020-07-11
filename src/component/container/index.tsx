@@ -9,12 +9,12 @@ const StyledSafeAreaView = styled.SafeAreaView`
   display: flex;
 `;
 
-interface Props {
+interface IProps {
   testID?: string;
   style?: ViewStyle;
 }
 
-const Container: React.FC<Props> = (props) => {
+const Container: React.FC<IProps> = (props) => {
   return <StyledSafeAreaView style={props.style} />;
 };
 
