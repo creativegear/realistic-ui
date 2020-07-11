@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import Theme from '../../src/theme';
-import Button from '../../src/Button';
+import Button from '../../src/component/button';
 import { ContainerDeco } from '../../storybook/decorators';
 import { storiesOf } from '@storybook/react-native';
 import styled from 'styled-components/native';

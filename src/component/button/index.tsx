@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import styled, { ThemeContext } from 'styled-components/native';
 import Ripple from 'react-native-material-ripple';
 import { ActivityIndicator, TextStyle, ViewStyle } from 'react-native';
-import ColorUtil from '../util/ColorUtil';
-import { IStyleTheme, IThemePart } from '../theme';
+import ColorUtil from '../../../src/util/ColorUtil';
+import { IStyleTheme, IThemePart } from '../../../src/theme';
 
 const StyledButton = styled.View`
   align-self: center;
