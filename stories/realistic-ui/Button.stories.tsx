@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-
+import Theme from '../../src/theme';
 import Button from '../../src/Button';
 import { ContainerDeco } from '../../storybook/decorators';
 import { storiesOf } from '@storybook/react-native';
@@ -18,17 +18,18 @@ const Container = styled.View`
 
 function Default(): React.ReactElement {
   return (
-    <Container>
-      <Button
-        style={{ marginBottom: 20 }}
-        onPress={async (setErrorMessage) => {
-          await TimeUtil.sleep(3000);
-          setErrorMessage('Some thing wrong!');
-        }}
-        text={'Press me!'}
-      />
-      <Button style={{ marginBottom: 20 }} isDisabled={true} text={'Disabled'} />
-    </Container>
+    <Theme>
+      <Container>
+        <Button
+          style={{ marginBottom: 20 }}
+          onPress={async (setErrorMessage) => {
+            await TimeUtil.sleep(3000);
+          }}
+          text={'Press me!'}
+        />
+        <Button style={{ marginBottom: 20 }} isDisabled={true} text={'Disabled'} />
+      </Container>
+    </Theme>
   );
 }
 

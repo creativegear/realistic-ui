@@ -24,6 +24,7 @@
     "deploy-storybook": "storybook-to-ghpages"
   },
   "dependencies": {
+    "react-native-appearance": "^0.3.4",
     "react-native-svg": "^12.1.0"
   },
   "husky": {
@@ -73,7 +74,7 @@
     "react-native-web": "^0.12.3",
     "react-test-renderer": "^16.13.1",
     "react-useinterval": "^1.0.1",
-    "styled-components": "^5.1.1",
+    "styled-components": "^5.1.0",
     "ts-jest": "^26.1.1",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",

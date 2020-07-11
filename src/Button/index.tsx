@@ -1,16 +1,17 @@
-import { ActivityIndicator, TextStyle, ViewStyle } from 'react-native';
-
-import React, { useState } from 'react';
-import styled from 'styled-components/native';
+import React, { useContext, useState } from 'react';
+import styled, { ThemeContext } from 'styled-components/native';
 import Ripple from 'react-native-material-ripple';
+import { ActivityIndicator, TextStyle, ViewStyle } from 'react-native';
 import ColorUtil from '../util/ColorUtil';
+import { IStyleTheme, IThemePart } from '../theme';
 
 const StyledButton = styled.View`
   align-self: center;
   width: 320px;
   height: 52px;
-  border-color: blue;
-  background-color: #eeeeee;
+  border-color: ${(props: IStyleTheme) => ColorUtil.darken(props.theme.colors.primary, 50)};
+  border-radius: 5px;
+  background-color: ${(props: IStyleTheme) => props.theme.colors.primary};
   align-items: center;
   justify-content: center;
   flex-direction: row;
@@ -18,17 +19,17 @@ const StyledButton = styled.View`
 `;
 
 const StyledDisabled = styled(StyledButton)`
-  background-color: #cccccc;
-  border-color: rgb(200, 200, 200);
+  border-color: ${(props: IStyleTheme) => ColorUtil.darken(props.theme.colors.primary, 90)};
+  background-color: ${(props: IStyleTheme) => ColorUtil.darken(props.theme.colors.primary, 50)};
 `;
 
 const StyledText = styled.Text`
   font-size: 16px;
-  color: #069ccd;
+  color: ${(props: IStyleTheme) => props.theme.colors.butttonTextColor};
 `;
 
 const StyledDisabledText = styled(StyledText)`
-  color: #969696;
+  color: ${(props: IStyleTheme) => ColorUtil.darken(props.theme.colors.butttonTextColor, 50)};
 `;
 
 interface Props {
@@ -62,6 +63,8 @@ function Button(props: Props): React.ReactElement {
   } = props;
 
   const [loading, setLoading] = useState(false);
+  const themeContext: IThemePart = useContext(ThemeContext);
+  console.log(themeContext);
 
   const onPress = async (e: any) => {
     if (props.onPress) {
@@ -82,25 +85,25 @@ function Button(props: Props): React.ReactElement {
       </StyledDisabled>
     );
   }
-  if (loading) {
-    return (
-      //@ts-ignore
-      <StyledButton testID={testID} style={[{ cursor: 'not-allowed' }, style]}>
-        <ActivityIndicator size="small" color={indicatorColor} />
-      </StyledButton>
-    );
-  }
   return (
     <Ripple
       testID={testID}
-      rippleColor={ColorUtil.lignten(rippleColor || '#d85050', 20)}
-      onPress={onPress}
-      style={[{ cursor: 'pointer' }, style]}>
+      rippleColor={ColorUtil.lignten(themeContext.colors.primary, 20)}
+      disabled={loading}
+      onPress={loading ? null : onPress}
+      style={[{ cursor: loading ? 'not-allowed' : 'pointer' }, style]}>
+      {leftElement || null}
       <StyledButton>
-        {leftElement || null}
-        <StyledText style={textStyle}>{text}</StyledText>
-        {rightElement || null}
+        {loading ? (
+          <ActivityIndicator
+            size="small"
+            color={indicatorColor || themeContext.colors.butttonTextColor}
+          />
+        ) : (
+          <StyledText style={textStyle}>{text}</StyledText>
+        )}
       </StyledButton>
+      {rightElement || null}
     </Ripple>
   );
 }
