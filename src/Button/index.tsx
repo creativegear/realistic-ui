@@ -7,10 +7,10 @@ import { IStyleTheme, IThemePart } from '../theme';
 
 const StyledButton = styled.View`
   align-self: center;
-  width: 320px;
-  height: 52px;
+  width: 10rem;
+  height: 3.5rem;
   border-color: ${(props: IStyleTheme) => ColorUtil.darken(props.theme.colors.primary, 50)};
-  border-radius: 5px;
+  border-radius: 0.3rem;
   background-color: ${(props: IStyleTheme) => props.theme.colors.primary};
   align-items: center;
   justify-content: center;
@@ -91,9 +91,33 @@ function Button(props: Props): React.ReactElement {
       rippleColor={ColorUtil.lignten(themeContext.colors.primary, 20)}
       disabled={loading}
       onPress={loading ? null : onPress}
-      style={[{ cursor: loading ? 'not-allowed' : 'pointer' }, style]}>
+      style={[
+        { cursor: loading ? 'not-allowed' : 'pointer' },
+        style,
+        {
+          padding: 0,
+          paddingTop: 0,
+          paddingBottom: 0,
+          paddingLeft: 0,
+          paddingRight: 0,
+          paddingVertical: 0,
+          paddingHorizontal: 0,
+        },
+      ]}>
       {leftElement || null}
-      <StyledButton>
+      <StyledButton
+        style={[
+          style,
+          {
+            margin: 0,
+            marginBottom: 0,
+            marginTop: 0,
+            marginLeft: 0,
+            marginRight: 0,
+            marginVertical: 0,
+            marginHorizontal: 0,
+          },
+        ]}>
         {loading ? (
           <ActivityIndicator
             size="small"
