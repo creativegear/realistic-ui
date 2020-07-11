@@ -47,7 +47,7 @@ interface Props {
   rightElement?: React.ReactElement;
 }
 
-function Button(props: Props): React.ReactElement {
+const Button: React.FC<Props> = (props) => {
   const {
     testID,
     text,
@@ -130,6 +130,6 @@ function Button(props: Props): React.ReactElement {
       {rightElement || null}
     </Ripple>
   );
-}
+};
 
 export default Button;
